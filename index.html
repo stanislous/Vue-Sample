@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="vue.js"></script>
+</head>
+<body>
+
+<!-- <div id="app"> -->
+<!-- <input type="text" v-on:input="changeTitle">
+  <p>{{title}}</p>
+</div> -->
+
+<div id="app1">
+	<h1>{{ title }}</h1>
+	<!-- <button @click="show" ref="myButton">change</button> -->
+</div>
+
+<div id="app2">
+	<h1>{{ title }}</h1>
+	<!-- <button @click="onChange">change</button> -->
+</div>
+
+<div id="app3">
+
+</div>
+
+<script>
+var vm1 = new Vue({
+	//keeps track of the specific html part
+	// el: '#app1',
+  data:{
+	title: "from vm1"
+  },
+  methods:{
+	  /*show(){
+		  this.$refs.myButton.innerText = 'Test';
+	  }*/
+  	 /*changeTitle: function(event){
+     	this.title = event.target.value
+	 }*/
+  }
+});
+
+
+// can use mount method instead of el property in vue.
+vm1.$mount('#app1');
+
+
+//data field can be added outside from the vue
+/*var data = {
+	title: "from vm1"
+}*/
+
+
+// change vue instance from outside
+/*setTimeout(function(){
+ 	vm1.title = "changed by timer";
+ }, 1000);*/
+
+// outside properties doesnt have getters and setters.
+// Cannot access from constructor. 
+/*vm1.newProp = 'New';*/
+
+var vm2 = new Vue({
+	el: '#app2',
+	data:{
+		title: "from vm2"
+	},
+	methods:{
+		//change vue instance from another instance
+		// onChange(){
+		// 	vm1.title = "Changed from vm2";
+		// }
+	}
+});
+
+//how to mount a template
+var vm3 = new Vue({
+	template: "<h1>From vm3</h1>"
+});
+
+vm3.$mount('#app3');
+document.getElementById('app3').appendChild(vm3.$el);
+
+</script>
+</body>
+</html>
